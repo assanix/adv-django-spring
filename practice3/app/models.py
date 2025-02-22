@@ -17,3 +17,14 @@ class Food(models.Model):
 class Consume(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     food_consumed = models.ForeignKey(Food, on_delete=models.CASCADE)
+
+
+class HealthGoal(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    daily_calorie_goal = models.IntegerField(default=2000)
+    carb_goal = models.FloatField(default=50)
+    protein_goal = models.FloatField(default=50)
+    fat_goal = models.FloatField(default=50)
+
+    def __str__(self):
+        return f"{self.user.username}'s Health Goal"
